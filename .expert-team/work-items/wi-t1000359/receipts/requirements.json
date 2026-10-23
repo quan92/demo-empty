@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "requirements:1",
+  "receiptType": "requirements-baseline",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "requirements",
+  "inputRevision": 0,
+  "stateVersion": 1,
+  "outcome": "passed",
+  "contentHash": "sha256:88bef5653ba4cfbfc3952e91abf316dafb06c211884a65f9e911e6ee36ef168c",
+  "createdAt": "2026-10-23T07:34:20.225Z",
+  "timing": {
+    "startedAt": "2026-10-23T07:33:28.817Z",
+    "completedAt": "2026-10-23T07:34:20.224Z",
+    "durationMs": 51407
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000359/requirements.md",
+      "bytes": 1540,
+      "sha256": "sha256:b9c0cec2597b33a85c86f4e3d75488185ff21bbb8c95cb622fb112edfc61f27d",
+      "role": "requirements",
+      "purpose": "requirements-stage-artifact",
+      "title": "需求：HTML 鹈鹕骑车"
+    }
+  ],
+  "verification": [
+    {
+      "checkId": "requirements:completion",
+      "status": "passed"
+    }
+  ]
+}
