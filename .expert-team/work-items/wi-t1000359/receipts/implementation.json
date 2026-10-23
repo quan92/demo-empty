@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "implementation:3",
+  "receiptType": "implementation-report",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "implementation",
+  "inputRevision": 2,
+  "stateVersion": 3,
+  "outcome": "passed",
+  "contentHash": "sha256:133eb4e92bd6ac59822cd384117e22c3950117c867ab688e78eb875ce86e5f2b",
+  "createdAt": "2026-10-23T07:55:19.735Z",
+  "timing": {
+    "startedAt": "2026-10-23T07:49:18.268Z",
+    "completedAt": "2026-10-23T07:55:19.735Z",
+    "durationMs": 361467
+  },
+  "artifacts": [
+    {
+      "path": "index.html",
+      "bytes": 8847,
+      "sha256": "sha256:f5e9915768c16290464bec590b2a727222e39e3ccc5901e618acdd3fc7b773e3",
+      "role": "primary",
+      "purpose": "单文件静态页面：内联 SVG 呈现鹈鹕骑自行车场景",
+      "title": "鹈鹕骑车"
+    },
+    {
+      "path": "docs/wi-t1000359/implementation-report.md",
+      "bytes": 3470,
+      "sha256": "sha256:bb6bf3fb4c4f8cfb85d8440c91b6102bc75c92ef6c41c53eb27a6c2cd3b1c6ca",
+      "role": "report",
+      "purpose": "实现阶段报告：实现内容、开发侧验证证据与移交 QA 事项",
+      "title": "实现报告：HTML 鹈鹕骑车"
+    }
+  ],
+  "url": "http://localhost:8734/index.html",
+  "verification": [
+    {
+      "checkId": "dev-check-01",
+      "status": "passed"
+    },
+    {
+      "checkId": "dev-check-02",
+      "status": "passed"
+    },
+    {
+      "checkId": "dev-check-03",
+      "status": "passed"
+    },
+    {
+      "checkId": "implementation:application-route",
+      "status": "passed",
+      "applicationProfile": {
+        "applicationType": "simple-frontend",
+        "routeId": "inline",
+        "sha256": "sha256:59b172820c82739100dba884bc67b0a5d32a4661aa7102b8f46ee71264bf5861",
+        "path": ".expert-team/work-items/wi-t1000359/spec-state.json#/applicationProfile"
+      }
+    }
+  ]
+}
