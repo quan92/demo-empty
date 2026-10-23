@@ -1,0 +1,110 @@
+{
+  "decision": "fail",
+  "summary": {
+    "objective": "验证 AC-01：浏览器直接打开交付的 HTML 文件后，页面呈现鹈鹕骑自行车的可辨认画面",
+    "changedBehavior": "单文件静态页面 index.html 在浏览器中的实际渲染结果与视觉呈现（runtime-render / visual-style）",
+    "nonGoals": [
+      "动画增强效果验收",
+      "多设备适配",
+      "交互操作与数据持久化"
+    ],
+    "riskLabels": [
+      "visual-quality"
+    ]
+  },
+  "environment": {
+    "name": "macOS 桌面 Chromium 预览浏览器（agent_browser）+ 实现阶段登记的 python3 http.server 静态服务（端口 8734，返回内容哈希与当前源码一致）",
+    "version": "index.html sha256:f5e9915768c16290464bec590b2a727222e39e3ccc5901e618acdd3fc7b773e3",
+    "dataProfile": "纯静态页面，无用户数据与种子数据"
+  },
+  "verification": [
+    {
+      "checkId": "QA-01",
+      "type": "browser-ui",
+      "status": "failed",
+      "plan": [
+        {
+          "requirementId": "AC-01",
+          "kind": "runtime-render",
+          "action": "用浏览器打开交付的 HTML 文件，观察页面渲染结果。",
+          "expected": "页面正常渲染，无空白页、无报错；画面中鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态。"
+        },
+        {
+          "requirementId": "AC-01",
+          "kind": "visual-style",
+          "action": "用浏览器打开交付的 HTML 文件，观察页面渲染结果。",
+          "expected": "页面正常渲染，无空白页、无报错；画面中鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态。"
+        }
+      ],
+      "evidence": "浏览器记录 #1：页面渲染正常、无报错且关键图形几何可测，但车座被鹈鹕身体完全遮挡、骑坐关系不可辨，且需求方明确反馈当前画面效果不合格并要求重做，视觉验收不满足。",
+      "observation": {
+        "method": "browser",
+        "actor": "expert",
+        "reference": "浏览器记录 #1：http://localhost:8734/index.html，1280×800 视口，截图 screenshot-1792743812836.png 与 getBBox/getBoundingClientRect 读数"
+      },
+      "assertions": [
+        {
+          "requirementId": "AC-01",
+          "kind": "runtime-render",
+          "action": "用浏览器打开交付的 HTML 文件，观察页面渲染结果。",
+          "expected": "页面正常渲染，无空白页、无报错；画面中鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态。",
+          "actual": "页面在 1280×800 桌面视口正常渲染：title 与 h1 均为'鹈鹕骑车'，console/page 错误为空，SVG 渲染盒 880×616，前后轮各 140×140、喙 116×54、喉囊、翅端手、双脚等关键图形均为非零可见盒，无横向溢出（scrollW=1280=innerW）",
+          "status": "passed"
+        },
+        {
+          "requirementId": "AC-01",
+          "kind": "visual-style",
+          "action": "用浏览器打开交付的 HTML 文件，观察页面渲染结果。",
+          "expected": "页面正常渲染，无空白页、无报错；画面中鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态。",
+          "actual": "基础样式已应用（frame 白底、16px 圆角、rgba(60,55,40,0.12) 阴影；body 弹性居中、背景 rgb(239,236,228)；svg display:block），但车座 bbox(264,280,57,21) 被鹈鹕身体 bbox(242,198,156,104) 完全覆盖而不可见，骑坐关系不可辨；需求方反馈当前画面效果不合格并要求重做",
+          "status": "failed"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "acceptance": "AC-01: 在浏览器中直接打开交付的 HTML 文件后，页面正常显示，画面呈现一只鹈鹕骑在自行车上的可辨认场景。",
+    "mandatoryAcceptance": [
+      {
+        "id": "AC-01",
+        "source": "requirements.md#AC-01",
+        "surface": "user-interface",
+        "status": "not-met",
+        "checkIds": [
+          "QA-01"
+        ],
+        "evidenceKinds": [
+          "runtime-render",
+          "visual-style"
+        ],
+        "evidence": "QA-01：渲染与无报错通过，但视觉验收失败（车座被身体遮挡、骑坐关系不可辨，需求方反馈效果不合格），见浏览器记录 #1 与截图 screenshot-1792743812836.png"
+      }
+    ],
+    "riskLabels": [],
+    "verificationTypes": [
+      "browser-ui"
+    ]
+  },
+  "defects": [
+    {
+      "id": "DEF-01",
+      "severity": "major",
+      "taskId": "wi-t1000359",
+      "environment": "macOS 桌面 Chromium 预览浏览器，http://localhost:8734/index.html，1280×800 视口",
+      "steps": [
+        "用浏览器打开 http://localhost:8734/index.html",
+        "观察页面中鹈鹕与自行车的画面",
+        "读取车座 path(fill=#454a4f) 与鹈鹕身体 ellipse(rx=78) 的 getBBox 并比对 SVG 文档绘制顺序"
+      ],
+      "expected": "AC-01：鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态（与车座、车把、踏板的位置关系可辨）",
+      "actual": "车座 bbox(264,280,57,21) 完全落在鹈鹕身体 bbox(242,198,156,104) 内，且身体在文档顺序中后绘制，车座被完全遮挡不可见；鹈鹕身体看似浮在车架上管上方，骑坐关系不可辨；需求方（用户）明确反馈画面效果不合格并要求重做",
+      "location": "index.html:139（车座 path）与 index.html:153（鹈鹕身体 ellipse）",
+      "problem": "骑坐姿态的关键参照物（车座）在渲染结果中不可见，AC-01 的'骑在自行车上'姿态不可辨，视觉验收不满足",
+      "requiredChange": "由实现阶段重做画面：调整鹈鹕身体与车座的层叠与位置关系使车座可见、身体坐于其上，并整体提升鹈鹕与自行车形象的可辨性与协调性",
+      "acceptanceEvidence": "复测需在浏览器中确认车座可见且鹈鹕坐于其上、整体形象可辨，并取得需求方确认"
+    }
+  ],
+  "skippedChecks": [],
+  "residualRisks": [],
+  "baselineUpdates": []
+}

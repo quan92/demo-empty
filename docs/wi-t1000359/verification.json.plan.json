@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "acceptance": [
+    {
+      "id": "AC-01",
+      "source": "requirements.md#AC-01",
+      "surface": "user-interface",
+      "evidenceKinds": [
+        "runtime-render",
+        "visual-style"
+      ],
+      "checkIds": [
+        "QA-01"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "checkId": "QA-01",
+      "type": "browser-ui",
+      "plan": [
+        {
+          "requirementId": "AC-01",
+          "kind": "runtime-render",
+          "action": "用浏览器打开交付的 HTML 文件，观察页面渲染结果。",
+          "expected": "页面正常渲染，无空白页、无报错；画面中鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态。"
+        },
+        {
+          "requirementId": "AC-01",
+          "kind": "visual-style",
+          "action": "用浏览器打开交付的 HTML 文件，观察页面渲染结果。",
+          "expected": "页面正常渲染，无空白页、无报错；画面中鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态。"
+        }
+      ]
+    }
+  ]
+}

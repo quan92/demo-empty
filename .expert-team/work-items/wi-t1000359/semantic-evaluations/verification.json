@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "actionId": "verification",
+  "status": "blocked",
+  "code": "verification-failed",
+  "findings": [
+    {
+      "id": "DEF-01",
+      "severity": "major",
+      "taskId": "wi-t1000359",
+      "environment": "macOS 桌面 Chromium 预览浏览器，http://localhost:8734/index.html，1280×800 视口",
+      "steps": [
+        "用浏览器打开 http://localhost:8734/index.html",
+        "观察页面中鹈鹕与自行车的画面",
+        "读取车座 path(fill=#454a4f) 与鹈鹕身体 ellipse(rx=78) 的 getBBox 并比对 SVG 文档绘制顺序"
+      ],
+      "expected": "AC-01：鹈鹕与自行车的形象均可辨认，鹈鹕呈现骑在自行车上的姿态（与车座、车把、踏板的位置关系可辨）",
+      "actual": "车座 bbox(264,280,57,21) 完全落在鹈鹕身体 bbox(242,198,156,104) 内，且身体在文档顺序中后绘制，车座被完全遮挡不可见；鹈鹕身体看似浮在车架上管上方，骑坐关系不可辨；需求方（用户）明确反馈画面效果不合格并要求重做",
+      "location": "index.html:139（车座 path）与 index.html:153（鹈鹕身体 ellipse）",
+      "problem": "骑坐姿态的关键参照物（车座）在渲染结果中不可见，AC-01 的'骑在自行车上'姿态不可辨，视觉验收不满足",
+      "requiredChange": "由实现阶段重做画面：调整鹈鹕身体与车座的层叠与位置关系使车座可见、身体坐于其上，并整体提升鹈鹕与自行车形象的可辨性与协调性",
+      "acceptanceEvidence": "复测需在浏览器中确认车座可见且鹈鹕坐于其上、整体形象可辨，并取得需求方确认"
+    }
+  ],
+  "evaluatorId": "quality.verification",
+  "evaluatorVersion": 1,
+  "sourceReceiptId": "verification:4",
+  "sourceArtifactSha256": "sha256:a4bf612ad1105719ef410b4d4361964087b086923c19b04d14ba0a83308779c4",
+  "validator": "tools/quality-report-validator.mjs",
+  "evaluatedAt": "2026-10-23T08:26:51.310Z"
+}
