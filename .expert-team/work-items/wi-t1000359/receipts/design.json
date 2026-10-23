@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "design:2",
+  "receiptType": "architecture-plan",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "design",
+  "inputRevision": 1,
+  "stateVersion": 2,
+  "outcome": "passed",
+  "contentHash": "sha256:f26ffd15946776d8d1651f78bcfba92e134de49c5707f8cfd974df109397bce3",
+  "createdAt": "2026-10-23T07:38:16.587Z",
+  "timing": {
+    "startedAt": "2026-10-23T07:37:20.732Z",
+    "completedAt": "2026-10-23T07:38:16.587Z",
+    "durationMs": 55855
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000359/architecture-baseline.md",
+      "bytes": 2858,
+      "sha256": "sha256:e44d56cdcdd83f33643f8b9ed25deef5d88d950b3ff71568b7dc24a949ea2013",
+      "role": "primary",
+      "purpose": "HTML 鹈鹕骑车的架构基线：单文件静态 HTML 载体、页面与交互范围、状态归属、实现入口与运行方式",
+      "title": "架构基线：HTML 鹈鹕骑车"
+    }
+  ],
+  "verification": [
+    {
+      "checkId": "design:completion",
+      "status": "passed"
+    },
+    {
+      "checkId": "design:application-route",
+      "status": "passed",
+      "applicationProfile": {
+        "applicationType": "simple-frontend",
+        "routeId": "compact",
+        "sha256": "sha256:59b172820c82739100dba884bc67b0a5d32a4661aa7102b8f46ee71264bf5861",
+        "path": ".expert-team/work-items/wi-t1000359/spec-state.json#/applicationProfile"
+      }
+    }
+  ]
+}

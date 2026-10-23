@@ -2,14 +2,41 @@
   "schemaVersion": 2,
   "specId": "general-application-development-spec",
   "specRevision": 14,
-  "state": "requirements_ready",
-  "revision": 1,
+  "state": "design_ready",
+  "revision": 2,
   "completedActions": [
-    "requirements"
+    "requirements",
+    "design"
   ],
   "blockers": [],
   "deliveryProfile": "standard",
   "graphRevision": 5,
   "graphHash": "sha256:9c3f304cfbb65de471791c872bf851dad3a7099e6db2e677caa20833d98192dd",
-  "updatedAt": "2026-10-23T07:34:20.225Z"
+  "updatedAt": "2026-10-23T07:38:16.587Z",
+  "applicationProfile": {
+    "schemaVersion": 1,
+    "applicationType": "simple-frontend",
+    "source": {
+      "artifactPath": "docs/wi-t1000359/requirements.md",
+      "sha256": "sha256:b9c0cec2597b33a85c86f4e3d75488185ff21bbb8c95cb622fb112edfc61f27d"
+    },
+    "reason": "需求仅要求一个可直接用浏览器打开的静态 HTML 文件，呈现鹈鹕骑自行车的可辨认画面；无服务端权威数据、认证、后台任务、外部集成或跨设备共享要求，符合 simple-frontend 路由。",
+    "evidence": {
+      "supporting": [
+        "需求明确交付物为一个 HTML 文件，浏览器直接打开即可显示，无需安装、构建或启动服务",
+        "核心目标为纯视觉呈现，验收仅关注页面渲染与画面可辨认性（AC-01）",
+        "需求明确未规定多设备适配、交互操作、数据持久化等要求"
+      ],
+      "excluding": [
+        "无服务端权威数据要求",
+        "无认证/权限要求",
+        "无后台任务要求",
+        "无外部服务集成要求",
+        "无跨用户/跨设备共享数据要求"
+      ],
+      "unresolved": []
+    },
+    "decidedAt": "2026-10-23T07:37:42.658Z",
+    "sha256": "sha256:59b172820c82739100dba884bc67b0a5d32a4661aa7102b8f46ee71264bf5861"
+  }
 }
