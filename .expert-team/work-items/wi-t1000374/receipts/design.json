@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "design:2",
+  "receiptType": "architecture-plan",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "design",
+  "inputRevision": 1,
+  "stateVersion": 2,
+  "outcome": "passed",
+  "contentHash": "sha256:94820e38230d4cf0117424c39ba25b99ff7272f87e10766d1d68dad4d4387b17",
+  "createdAt": "2026-10-26T09:01:12.404Z",
+  "timing": {
+    "startedAt": "2026-10-26T08:59:05.899Z",
+    "completedAt": "2026-10-26T09:01:12.404Z",
+    "durationMs": 126505
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000374/architecture-baseline.md",
+      "bytes": 3499,
+      "sha256": "sha256:c025a7c27d107bff06ed317cdd64f2867a1c855e065d6b8e78c752e52054bd66",
+      "role": "primary",
+      "purpose": "烟花动画 HTML 页面的架构基线：单 HTML 文件 + 内联 canvas 动画，无服务端能力，零依赖，支持本地文件或静态服务器打开",
+      "title": "架构基线：烟花动画 HTML 页面"
+    }
+  ],
+  "verification": [
+    {
+      "checkId": "design:completion",
+      "status": "passed"
+    },
+    {
+      "checkId": "design:application-route",
+      "status": "passed",
+      "applicationProfile": {
+        "applicationType": "simple-frontend",
+        "routeId": "compact",
+        "sha256": "sha256:978ac600c75d94622ca7501ec8c1781e8bf029bb2250cf07148597d14ba003a0",
+        "path": ".expert-team/work-items/wi-t1000374/spec-state.json#/applicationProfile"
+      }
+    }
+  ]
+}

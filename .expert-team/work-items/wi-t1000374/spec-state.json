@@ -2,14 +2,39 @@
   "schemaVersion": 2,
   "specId": "general-application-development-spec",
   "specRevision": 15,
-  "state": "requirements_ready",
-  "revision": 1,
+  "state": "design_ready",
+  "revision": 2,
   "completedActions": [
-    "requirements"
+    "requirements",
+    "design"
   ],
   "blockers": [],
   "scenarioId": "feature",
   "graphRevision": 5,
   "graphHash": "sha256:b40de31b37ec562e0cfe1005812bb53b4e422b4279e23a6892ffdc945663ffb2",
-  "updatedAt": "2026-10-26T08:21:20.095Z"
+  "updatedAt": "2026-10-26T09:01:12.404Z",
+  "applicationProfile": {
+    "schemaVersion": 1,
+    "applicationType": "simple-frontend",
+    "source": {
+      "artifactPath": "docs/wi-t1000374/requirements.md",
+      "sha256": "sha256:0b1ff9b6e1d07775e7a951b3b603bcb7d88b507df1df0b0b46ba164b6ddcfa4b"
+    },
+    "reason": "批准的需求仅要求一个可直接在浏览器打开的单 HTML 页面，自动持续播放烟花动画；全部行为可由纯前端实现，无任何服务端、数据库、认证、后台任务、外部集成或共享数据要求。",
+    "evidence": {
+      "supporting": [
+        "需求基线（docs/wi-t1000374/requirements.md）要求单个 HTML 交付物，浏览器打开后无需任何操作即可看到烟花绽放动画",
+        "动画持续播放、自动呈现，全部逻辑可在浏览器端 canvas 内完成",
+        "打开方式未规定，本地文件或静态服务器均可，无需服务端权威数据"
+      ],
+      "excluding": [
+        "需求未提及服务端、权威数据库、认证/权限、后台任务、外部服务集成或跨用户/设备共享数据中的任何一项",
+        "唯一的 AC-01 证据类型为 runtime-render，仅需在浏览器中打开页面观察动画，无需服务端能力",
+        "需求允许本地文件直接打开或静态服务器访问，任一方式可用即可，不依赖部署环境或后端"
+      ],
+      "unresolved": []
+    },
+    "decidedAt": "2026-10-26T08:59:24.597Z",
+    "sha256": "sha256:978ac600c75d94622ca7501ec8c1781e8bf029bb2250cf07148597d14ba003a0"
+  }
 }
