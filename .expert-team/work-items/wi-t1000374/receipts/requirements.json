@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "requirements:1",
+  "receiptType": "requirements-baseline",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "requirements",
+  "inputRevision": 0,
+  "stateVersion": 1,
+  "outcome": "passed",
+  "contentHash": "sha256:a3002a0a674cba1102d58edfb8170c7399650e4ceed8fe1c1fb580003c0ebf92",
+  "createdAt": "2026-10-26T08:21:20.095Z",
+  "timing": {
+    "startedAt": "2026-10-26T08:20:51.180Z",
+    "completedAt": "2026-10-26T08:21:20.094Z",
+    "durationMs": 28914
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000374/requirements.md",
+      "bytes": 1537,
+      "sha256": "sha256:0b1ff9b6e1d07775e7a951b3b603bcb7d88b507df1df0b0b46ba164b6ddcfa4b",
+      "role": "requirements",
+      "purpose": "烟花动画 HTML 页面的需求基线与验收场景",
+      "title": "需求：烟花动画 HTML 页面"
+    }
+  ],
+  "verification": [
+    {
+      "checkId": "requirements-artifact-written",
+      "status": "passed"
+    },
+    {
+      "checkId": "ac-coverage-of-user-goal",
+      "status": "passed"
+    }
+  ]
+}
