@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "implementation:3",
+  "receiptType": "implementation-report",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "implementation",
+  "inputRevision": 2,
+  "stateVersion": 3,
+  "outcome": "passed",
+  "contentHash": "sha256:bda2b2ecf5645dab5e466cc45064c33090a74fd2c537185f20a6255a9813c6cd",
+  "createdAt": "2026-10-26T09:20:27.008Z",
+  "timing": {
+    "startedAt": "2026-10-26T09:17:34.232Z",
+    "completedAt": "2026-10-26T09:20:27.008Z",
+    "durationMs": 172776
+  },
+  "artifacts": [
+    {
+      "path": "index.html",
+      "bytes": 4146,
+      "sha256": "sha256:48c0409846e139c102a20c73c11bd066628be6640efff7f8402c576d9b73dc6d",
+      "role": "primary",
+      "purpose": "可在浏览器直接打开的烟花动画页面，加载即自动持续播放，无任何外部依赖与交互要求",
+      "title": "烟花动画"
+    },
+    {
+      "path": "docs/wi-t1000374/implementation-report.md",
+      "bytes": 4067,
+      "sha256": "sha256:8ff97865e3fdb15fa55093a6ba96b8cbaca150bb3fe8b8a2584f54e260996d7a",
+      "role": "report",
+      "purpose": "实现报告：变更行为、调用链、架构基线符合性、开发侧验证证据、预览地址与 AC 覆盖状态",
+      "title": "实现报告：烟花动画 HTML 页面（wi-t1000374）"
+    }
+  ],
+  "url": "http://localhost:4173/index.html",
+  "verification": [
+    {
+      "checkId": "inline-script-syntax",
+      "status": "passed",
+      "command": "sed -n '/^<script>$/,/^<\\/script>$/p' index.html | sed '1d;$d' > /tmp/wi-t1000374-fireworks.js && node --check /tmp/wi-t1000374-fireworks.js",
+      "cwd": "工作区根目录",
+      "detail": "输出 SYNTAX_OK",
+      "exitCode": 0
+    },
+    {
+      "checkId": "static-serve-reachable",
+      "status": "passed",
+      "command": "python3 -m http.server 4173（注册后台作业 9b6beb48-e5bf-434c-91b3-46b399c80ae5）；curl -s -o /dev/null -w \"%{http_code} %{size_download}\" http://localhost:4173/index.html",
+      "cwd": "工作区根目录",
+      "detail": "HTTP 200，返回 4146 字节",
+      "exitCode": 0
+    },
+    {
+      "checkId": "AC-01-runtime-render",
+      "status": "not-run",
+      "detail": "浏览器 E2E / 视觉验收由 QA 阶段执行；实现阶段仅提供预览入口，不出具浏览器验收结论"
+    },
+    {
+      "checkId": "implementation:application-route",
+      "status": "passed",
+      "applicationProfile": {
+        "applicationType": "simple-frontend",
+        "routeId": "inline",
+        "sha256": "sha256:978ac600c75d94622ca7501ec8c1781e8bf029bb2250cf07148597d14ba003a0",
+        "path": ".expert-team/work-items/wi-t1000374/spec-state.json#/applicationProfile"
+      }
+    }
+  ]
+}

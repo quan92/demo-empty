@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>烟花动画</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #05060f;
+  }
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<script>
+(function () {
+  'use strict';
+
+  var canvas = document.getElementById('sky');
+  var ctx = canvas.getContext('2d');
+
+  var W = 0;
+  var H = 0;
+
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var GRAVITY = 0.045;
+  var rockets = [];
+  var particles = [];
+  var launchTimer = 0;
+  var launchInterval = 55; // 帧；控制发射节奏
+
+  function rand(min, max) {
+    return min + Math.random() * (max - min);
+  }
+
+  function hue() {
+    return Math.floor(rand(0, 360));
+  }
+
+  function launchRocket() {
+    var x = rand(W * 0.15, W * 0.85);
+    var y = H + 6;
+    // 目标高点：屏幕上部 1/4 ~ 1/2 区域
+    var targetY = rand(H * 0.15, H * 0.45);
+    var vy = -Math.sqrt(2 * GRAVITY * (y - targetY));
+    rockets.push({
+      x: x,
+      y: y,
+      vx: rand(-0.6, 0.6),
+      vy: vy,
+      baseHue: hue(),
+      trail: []
+    });
+  }
+
+  function explode(rocket) {
+    var count = Math.floor(rand(70, 130));
+    var secondHue = (rocket.baseHue + Math.floor(rand(30, 90))) % 360;
+    for (var i = 0; i < count; i++) {
+      var angle = (Math.PI * 2 * i) / count + rand(-0.05, 0.05);
+      var speed = rand(0.6, 4.2);
+      var h = Math.random() < 0.25 ? secondHue : rocket.baseHue;
+      particles.push({
+        x: rocket.x,
+        y: rocket.y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        hue: h,
+        lightness: rand(55, 75),
+        alpha: 1,
+        decay: rand(0.008, 0.018),
+        size: rand(1.2, 2.4)
+      });
+    }
+  }
+
+  function step() {
+    // 半透明覆盖形成拖尾余晖
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'rgba(5, 6, 15, 0.22)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter';
+
+    // 发射节奏
+    launchTimer++;
+    if (launchTimer >= launchInterval) {
+      launchTimer = 0;
+      launchInterval = Math.floor(rand(35, 80));
+      launchRocket();
+      if (Math.random() < 0.35) {
+        launchRocket(); // 偶尔双发
+      }
+    }
+
+    // 更新烟花弹
+    for (var i = rockets.length - 1; i >= 0; i--) {
+      var r = rockets[i];
+      r.trail.push({ x: r.x, y: r.y });
+      if (r.trail.length > 8) r.trail.shift();
+      r.vy += GRAVITY;
+      r.x += r.vx;
+      r.y += r.vy;
+      // 到达高点（速度转为向下）即绽放
+      if (r.vy >= 0) {
+        explode(r);
+        rockets.splice(i, 1);
+        continue;
+      }
+      for (var t = 0; t < r.trail.length; t++) {
+        var p = r.trail[t];
+        var a = (t + 1) / r.trail.length;
+        ctx.fillStyle = 'hsla(' + r.baseHue + ', 100%, 70%, ' + (a * 0.8) + ')';
+        ctx.fillRect(p.x - 1, p.y - 1, 2, 2);
+      }
+      ctx.fillStyle = 'hsla(' + r.baseHue + ', 100%, 85%, 1)';
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, 2.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 更新绽放粒子
+    for (var j = particles.length - 1; j >= 0; j--) {
+      var q = particles[j];
+      q.vx *= 0.985;
+      q.vy = q.vy * 0.985 + GRAVITY * 0.6;
+      q.x += q.vx;
+      q.y += q.vy;
+      q.alpha -= q.decay;
+      if (q.alpha <= 0) {
+        particles.splice(j, 1);
+        continue;
+      }
+      ctx.fillStyle = 'hsla(' + q.hue + ', 100%, ' + q.lightness + '%, ' + q.alpha + ')';
+      ctx.beginPath();
+      ctx.arc(q.x, q.y, q.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // 页面加载后立即启动：先发射几发，保证打开即有动画
+  launchRocket();
+  window.setTimeout(launchRocket, 400);
+  window.setTimeout(launchRocket, 900);
+  requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
