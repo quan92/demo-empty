@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "requirements:1",
+  "receiptType": "requirements-baseline",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "requirements",
+  "inputRevision": 0,
+  "stateVersion": 1,
+  "outcome": "passed",
+  "contentHash": "sha256:a6bd9f6f18de24c4492a2a79602db1abd9f432f18c7c25dad60e403c5f669f2b",
+  "createdAt": "2026-10-23T11:06:48.510Z",
+  "timing": {
+    "startedAt": "2026-10-23T11:06:13.725Z",
+    "completedAt": "2026-10-23T11:06:48.510Z",
+    "durationMs": 34785
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000365/requirements.md",
+      "bytes": 1423,
+      "sha256": "sha256:64c989026205e4afb794dd815d8562c5b6059977c593599f15c63c05f52eef6b",
+      "role": "requirements",
+      "purpose": "鹈鹕骑自行车 HTML 页面的需求基线与验收场景",
+      "title": "需求：鹈鹕骑自行车 HTML 页面"
+    }
+  ],
+  "verification": [
+    {
+      "checkId": "requirements:completion",
+      "status": "passed"
+    }
+  ]
+}
